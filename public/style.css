@@ -1,0 +1,52 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0a0f; color: #e0e0e0; height: 100vh; overflow: hidden; }
+
+.container { display: flex; flex-direction: column; height: 100vh; }
+
+header {
+  background: #12121a; padding: 12px 24px; display: flex; justify-content: space-between;
+  align-items: center; border-bottom: 1px solid #2a2a3a;
+}
+header h1 { font-size: 18px; font-weight: 600; color: #00ff88; }
+#status { padding: 4px 12px; border-radius: 12px; font-size: 12px; background: #ff4444; color: #fff; }
+#status.connected { background: #00cc66; }
+
+.main-layout { display: flex; flex: 1; overflow: hidden; }
+
+.sidebar { width: 240px; background: #0e0e16; border-right: 1px solid #1e1e2e; padding: 16px; overflow-y: auto; }
+.sidebar h2 { font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.agent-item { padding: 10px; margin-bottom: 6px; background: #161622; border-radius: 6px; cursor: pointer; border: 1px solid transparent; }
+.agent-item:hover { border-color: #00ff88; }
+.agent-item.active { border-color: #00ff88; background: #1a1a2e; }
+.agent-item .name { font-weight: 600; font-size: 13px; }
+.agent-item .ip { font-size: 11px; color: #888; }
+
+.monitor { flex: 1; display: flex; flex-direction: column; padding: 16px; overflow: auto; }
+
+.controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.controls select { background: #161622; color: #e0e0e0; border: 1px solid #2a2a3a; padding: 8px 12px; border-radius: 4px; }
+.controls button { background: #1a1a2e; color: #e0e0e0; border: 1px solid #2a2a3a; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+.controls button:hover:not(:disabled) { background: #00ff88; color: #000; }
+.controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.viewports { display: flex; gap: 16px; flex: 1; min-height: 0; }
+.viewport { flex: 1; background: #0a0a0f; border: 1px solid #1e1e2e; border-radius: 8px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+.viewport-label { padding: 6px 12px; font-size: 11px; text-transform: uppercase; color: #666; background: #12121a; border-bottom: 1px solid #1e1e2e; }
+.screen-container { flex: 1; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #050508; }
+#screen-image { max-width: 100%; max-height: 100%; object-fit: contain; }
+#webcam-image { width: 100%; height: 100%; object-fit: cover; }
+
+.cursor-dot { position: absolute; width: 10px; height: 10px; background: #ff0044; border-radius: 50%; border: 2px solid #fff; pointer-events: none; display: none; transform: translate(-50%, -50%); z-index: 100; }
+
+.info-panel { margin-top: 12px; padding: 12px; background: #12121a; border: 1px solid #1e1e2e; border-radius: 6px; }
+.info-panel h3 { font-size: 12px; color: #888; margin-bottom: 6px; }
+#agent-info { font-size: 12px; color: #aaa; font-family: monospace; }
+
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: #161622; border: 1px solid #2a2a3a; border-radius: 8px; padding: 24px; width: 600px; max-height: 80vh; display: flex; flex-direction: column; }
+.modal-content h3 { margin-bottom: 12px; }
+.close { float: right; font-size: 24px; cursor: pointer; }
+.cmd-output { flex: 1; background: #0a0a0f; padding: 12px; font-family: monospace; font-size: 12px; min-height: 200px; max-height: 400px; overflow-y: auto; margin-bottom: 12px; white-space: pre-wrap; color: #00ff88; }
+#cmd-input { background: #0a0a0f; border: 1px solid #2a2a3a; color: #e0e0e0; padding: 10px; border-radius: 4px; font-family: monospace; }
+.hidden { display: none; }
+.hint { color: #555; font-size: 12px; }
